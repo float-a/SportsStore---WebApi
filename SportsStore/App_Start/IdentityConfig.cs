@@ -24,6 +24,13 @@ namespace SportsStore
             //    AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
             //});
 
+            app.UseOAuthBearerTokens(new Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions
+            {
+                Provider = new StoreAuthProvider(),
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/Authenticate")
+            });
+
         }
     }
 }

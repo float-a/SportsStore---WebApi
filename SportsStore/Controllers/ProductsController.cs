@@ -22,15 +22,17 @@ namespace SportsStore.Controllers
             return Repository.Products;
         }
 
-        public Product GetProduct(int id)
+        public IHttpActionResult GetProduct(int id)
         {
-            return Repository.Products.Where(p => p.Id == id).FirstOrDefault();
+            Product result = Repository.Products.Where(p => p.Id == id).FirstOrDefault();
+            return result == null ? (IHttpActionResult)BadRequest("No product found") : Ok(result);
         }
         public async Task PostProduct(Product product)
         {
             await Repository.SaveProductAsync(product);
         }
 
+        [Authorize(Roles="Administrators")]
         public async Task DeleteProduct(int id)
         {
             await Repository.DeleteProductAsync(id);
