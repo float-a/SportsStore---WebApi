@@ -18,8 +18,8 @@ namespace SportsStore
             config.Routes.MapHttpRoute(
                 name: "OrdersRoute",
                 routeTemplate: "nonrest/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional}
-                )
+                defaults: new { id = RouteParameter.Optional }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
@@ -29,6 +29,8 @@ namespace SportsStore
 
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.DependencyResolver = new CustomResolver();
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }
