@@ -10,7 +10,7 @@ namespace SportsStore.Infrastructure.Identity
     {
         public StoreIdentityDbContext() : base("SportsStoreIdentityDb")
         {
-            Database.SetInitializer<StoreIdentityDbContext>(new StoreIdentityDbInitializer());
+            System.Data.Entity.Database.SetInitializer<StoreIdentityDbContext>(new StoreIdentityDbInitializer());
         }
 
         public static StoreIdentityDbContext Create()

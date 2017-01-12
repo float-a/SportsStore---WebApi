@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,7 +13,7 @@ namespace SportsStore.Infrastructure.Identity
         protected override void Seed(StoreIdentityDbContext context)
         {
             StoreUserManager userMgr = new StoreUserManager(new UserStore<StoreUser>(context));
-            StoreUserManager roleMgr = new StoreUserManager(new RoleStore<StoreRole>(context));
+            StoreRoleManager roleMgr = new StoreRoleManager(new RoleStore<StoreRole>(context));
 
             string roleName = "Administrators";
             string userName = "Admin";
@@ -37,7 +38,11 @@ namespace SportsStore.Infrastructure.Identity
             
             if(!userMgr.IsInRole(user.Id, roleName))
             {
-                userMgr.AddToRole(user.Id, roleName);
+                try
+                {
+                    userMgr.AddToRole(user.Id, roleName);
+                }
+                catch(Exception ex) { }
             }
 
             base.Seed(context);
