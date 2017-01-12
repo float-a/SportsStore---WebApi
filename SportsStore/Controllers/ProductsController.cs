@@ -27,6 +27,8 @@ namespace SportsStore.Controllers
             Product result = Repository.Products.Where(p => p.Id == id).FirstOrDefault();
             return result == null ? (IHttpActionResult)BadRequest("No product found") : Ok(result);
         }
+
+        [Authorize(Roles = "Administrators")]
         public async Task<IHttpActionResult> PostProduct(Product product)
         {
             if (ModelState.IsValid)
