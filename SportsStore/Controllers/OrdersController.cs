@@ -19,7 +19,7 @@ namespace SportsStore.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrators")]
+    //    [Authorize(Roles = "Administrators")]
         public IEnumerable<Order> List()
         {
             return Repository.Orders;
@@ -47,7 +47,7 @@ namespace SportsStore.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Roles = "Administrators")]
+    //    [Authorize(Roles = "Administrators")]
         public async Task DeleteOrder(int id)
         {
             await Repository.DeleteOrderAsync(id);
