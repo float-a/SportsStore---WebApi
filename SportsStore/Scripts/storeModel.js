@@ -21,7 +21,7 @@ $(document).ready(function () {
         model.gotError(false);
     },
     function (statusCode, statusText) {
-        console.log("Error: " + statusCode + " (" + statusTexts + ")");
+        console.log("Error: " + statusCode + " (" + statusText + ")");
         model.error(statusCode + " (" + statusText + ")");
         model.gotError(true);
     }

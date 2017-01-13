@@ -28,7 +28,7 @@ namespace SportsStore.Controllers
             return result == null ? (IHttpActionResult)BadRequest("No product found") : Ok(result);
         }
 
-        [Authorize(Roles = "Administrators")]
+       // [Authorize(Roles = "Administrators")]
         public async Task<IHttpActionResult> PostProduct(Product product)
         {
             if (ModelState.IsValid)
@@ -42,7 +42,7 @@ namespace SportsStore.Controllers
             }
         }
 
-        [Authorize(Roles="Administrators")]
+      //  [Authorize(Roles="Administrators")]
         public async Task DeleteProduct(int id)
         {
             await Repository.DeleteProductAsync(id);
